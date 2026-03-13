@@ -18,7 +18,7 @@ class carrosController{
     {
 
         $resultadoData = $this->modelo->getAll();
-        print_r($resultadoData);
+        require_once('./View/index.php');
 
     }
 
