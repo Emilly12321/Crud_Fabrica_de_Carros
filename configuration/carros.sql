@@ -29,11 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carros` (
   `id` int(11) NOT NULL,
-  `nome_modelo` varchar(100) NOT NULL,
+  `m` varchar(100) NOT NULL,
   `marca` varchar(100) NOT NULL,
-  `ano` int(11) NOT NULL,
-  `cor` varchar(50) NOT NULL,
-  `preco` decimal(10,2) NOT NULL
+  `ano` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

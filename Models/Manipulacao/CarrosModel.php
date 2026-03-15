@@ -1,0 +1,66 @@
+<?php 
+ 
+require_once('../configuration/DataBase.php');
+
+class CarrosModel extends Conexao
+{
+    private $tabela;
+
+
+    function __construct()
+    {
+        // invocando o mesmo construtor que a classe pai tem (DataBase.php)
+        parent::__construct();
+        $this->tabela = 'carros';
+    }
+
+    public function insert(Carro $carro){
+
+        $sql = "INSERT INTO $this->tabela (modelo, marca, ano) VALUES (?, ?, ?)";
+
+        $inserindo = $this->conexao->prepare($sql);
+
+        return $inserindo->execute([
+            $carro->getModelo(),
+            $carro->getMarca(),
+            $carro->getAno()
+        ]);
+    }
+
+    public function getAll()
+    {
+
+        $bancoSelecionando = $this->conexao->query("SELECT * FROM $this->tabela");
+
+        // transformando o objeto em uma array associativa.
+        $resultadoQuery = $bancoSelecionando->fetchAll();
+
+        return $resultadoQuery;
+    }
+
+    public function getByID($id){
+
+        $resultado = $this->conexao->prepare("SELECT * FROM $this->tabela WHERE id = ?");
+
+        $resultado->execute([$id]);
+
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function update(Carro $carro)
+    {
+        $resultado = $this->conexao->prepare("UPDATE $this->tabela SET modelo = ?, marca = ?, ano = ? WHERE id = ?");
+
+        return $resultado->execute([
+            $carro->getModelo(),
+            $carro->getMarca(),
+            $carro->getAno(),
+            $carro->getId()
+        ]);
+    }    
+
+}
+
+
+?>
