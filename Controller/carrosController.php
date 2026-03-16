@@ -28,14 +28,14 @@ class carrosController{
     {
 
         $resultadoData = $this->modelo->getAll();
-        require_once('../View/listar_carro.php');
+        include_once('../View/listar_carro.php');
 
     }
 
      function pegandoId($id)
     {
         $resultadoData = $this->modelo->getByID($id);
-        require('../View/editarCarro.php');
+        include_once('../View/editarCarro.php');
     }
 
     function atualizar($id, $novoModelo, $novaMarca, $novoAno)
