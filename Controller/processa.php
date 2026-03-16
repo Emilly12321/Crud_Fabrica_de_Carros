@@ -20,6 +20,8 @@
 
     $db = new carrosController();
 
+    // $id   = $_GET['id'] ?? $_POST['id'] ?? null;
+
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         
         $acao = $_POST['acao'] ?? "";
@@ -28,14 +30,10 @@
         switch($acao){
 
             case 'fabricar':
-                include '../View/cadastro_carro.php';
+                
+                header("Location: ../View/cadastro_carro.php");
+
                 break;
-
-            case "listar":
-
-             $db->mostrandoTudo();
-
-            break;
 
 
             case "salvarCarro":
@@ -46,6 +44,7 @@
 
                 $db->inserir($modelo, $marca, $ano);
 
+            
                  echo '
                         <div class="container-pai">
                             <div class="container-esquerdo">
@@ -77,9 +76,7 @@
                 $marca = $_POST['marca'];
                 $ano = $_POST['ano'];
 
-                $carro = new Carro($modelo, $marca, $ano, $id);
-
-                $db->atualizar($carro);
+                $db->atualizar($id,$modelo, $marca, $ano);
 
                 echo '
                         <div class="container-pai">
@@ -89,11 +86,11 @@
                                     <img src="../assets/img/nivea.jpg" class="fotos-inte">
                                 </div>
                                 <div class="titulos">
-                                    <h2 class="subtitulo-principal">monte o seu veículo</h2>
-                                    <h1 class="texto-h1">Fábrica de Veículos</h1>
+                                    <h2 class="subtitulo-principal">Atualize seu veiculo</h2>
+                                    <h1 class="texto-h1">Status de atualização</h1>
                                 </div>
                                 <div class="caixa-card">
-                                    <h3 class="sucesso">Sucesso na Fabricação</h3>
+                                    <h3 class="sucesso">Sucesso na Edição</h3>
                                     <div class="caixa-btn">
                                         <a href="../View/index.html" class="btn-segundo">Voltar ao menu</a>
                                     </div>
@@ -102,37 +99,45 @@
                             <div class="container-direito"></div>
                     </div>';
 
-                break;
+            break;
 
-            case 'vender':
-                include 'views/formVenda.php';
-                break;
 
         }
     }
     elseif ($_SERVER['REQUEST_METHOD'] === "GET") {
 
-        $acao = $_GET['acao'] ?? "";
+            $acao = $_GET['acao'] ?? "";
 
-        switch($acao){
+            switch($acao){
 
-            case "listar":
+                case "listar":
 
-                $db->mostrandoTudo();
+                    $db->mostrandoTudo();
 
-            break;
+                break;
 
-            case "editar":
+                case "editar":
 
-                $id = $_GET['id'];
+                    $id = $_GET['id'];
 
-                $resultadoData = $db->pegandoId($id);
+                    $resultadoData = $db->pegandoId($id);
 
-                require_once('../View/editarCarro.php');
 
-            break;
+                break;
 
-    }
+                case "excluir":
+
+                    $id = $_GET['id'];
+
+                    $db->excluir($id);
+
+                    header("Location: processa.php?acao=listar");
+                    
+                    exit;
+
+                break;
+
+        }
     }
 ?>
 

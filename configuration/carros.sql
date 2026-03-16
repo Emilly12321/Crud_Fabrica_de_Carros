@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `carros`
 --
 
-CREATE TABLE `carros` (
+CREATE TABLE IF NOT EXISTS`carros` (
   `id` int(11) NOT NULL,
-  `m` varchar(100) NOT NULL,
+  `modelo` varchar(100) NOT NULL,
   `marca` varchar(100) NOT NULL,
   `ano` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

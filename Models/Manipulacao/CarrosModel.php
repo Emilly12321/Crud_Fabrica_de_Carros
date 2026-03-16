@@ -44,7 +44,7 @@ class CarrosModel extends Conexao
 
         $resultado->execute([$id]);
 
-        return $resultado->fetch(PDO::FETCH_ASSOC);
+        return $resultado->fetch(PDO::FETCH_ASSOC);;
 
     }
 
@@ -60,6 +60,13 @@ class CarrosModel extends Conexao
         ]);
     }    
 
+    public function delete($id){
+
+        $resultado = $this->conexao->prepare("DELETE FROM $this->tabela WHERE id = ?");
+
+        return $resultado->execute([$id]);
+
+    }
 }
 
 

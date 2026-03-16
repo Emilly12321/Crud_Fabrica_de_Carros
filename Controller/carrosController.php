@@ -32,18 +32,25 @@ class carrosController{
 
     }
 
-    function pegandoId($id){
-
-        return $this->modelo->getByID($id);
-
+     function pegandoId($id)
+    {
+        $resultadoData = $this->modelo->getByID($id);
+        require('../View/editarCarro.php');
     }
 
-    function atualizar(Carro $carro){
+    function atualizar($id, $novoModelo, $novaMarca, $novoAno)
+    {
 
-        return $this-> modelo ->update($carro);
-
+            // Cria um objeto Carro atualizado
+            $carroAtualizado = new Carro($novoModelo, $novaMarca, $novoAno,$id);
+            
+            return $this->modelo->update($carroAtualizado);
+        
     }
 
+    function excluir($id){
+        return $this->modelo->delete($id);
+    }
 
 
 }

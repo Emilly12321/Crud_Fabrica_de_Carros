@@ -1,10 +1,10 @@
 <?php 
 
 class Carro{
-    private $id;
-    private $modelo;
-    private $marca;
-    private $ano;
+    protected $id;
+    public $modelo;
+    public $marca;
+    public $ano;
 
     //efetuando a construcao do carro ja com seus atributos
     
@@ -15,16 +15,41 @@ class Carro{
         $this->id = $id;
     }
 
+    public function setModelo($modelo){
+
+        $this->modelo = $modelo;
+
+    }
+
     public function getModelo(){
         return $this->modelo;
+    }
+
+    public function setMarca($marca){
+
+        $this->marca = $marca;
+
     }
 
     public function getMarca(){
         return $this->marca;
     }
 
+
+    public function setAno($ano){
+
+        $this->ano = $ano;
+
+    }
+
     public function getAno(){
         return $this->ano;
+    }
+
+    public function setID($id){
+
+        $this->id = $id;
+        
     }
 
     public function getId(){
