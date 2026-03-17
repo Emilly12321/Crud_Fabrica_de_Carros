@@ -1,6 +1,7 @@
 <?php 
 
 require_once('../Models/Manipulacao/CarrosModel.php');
+require_once('../Models/Entidade/Carro.php');
 
 
 class carrosController{
@@ -16,14 +17,16 @@ class carrosController{
 
 
     function inserir($modelo, $marca, $ano)
-    {
+    { 
+
         $carro = new Carro($modelo, $marca, $ano);
 
-        return $this->modelo->insert($carro);
-
-
-        
+        $this->modelo->insert($carro);   
+                   
+            
     }
+                
+
 
     function mostrandoTudo()
     {
@@ -42,10 +45,10 @@ class carrosController{
     function atualizar($id, $novoModelo, $novaMarca, $novoAno)
     {
 
-            // Cria um objeto Carro atualizado
-            $carroAtualizado = new Carro($novoModelo, $novaMarca, $novoAno,$id);
+        // Cria um objeto Carro atualizado
+        $carroAtualizado = new Carro($novoModelo, $novaMarca, $novoAno,$id);
             
-            return $this->modelo->update($carroAtualizado);
+        return $this->modelo->update($carroAtualizado);
 
                     
     }

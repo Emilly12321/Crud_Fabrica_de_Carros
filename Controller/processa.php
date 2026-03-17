@@ -2,8 +2,7 @@
 <?php
     session_start();
 
-    require_once '../Models/Entidade/Carro.php';
-    require_once '../Models/Manipulacao/CarrosModel.php';
+
     require_once 'carrosController.php';
 
     $db = new carrosController();
@@ -18,21 +17,12 @@
 
             case "salvarCarro":
 
-                $modelo = $_POST['modelo'];
-                $marca = $_POST['marca'];
-                $ano = $_POST['ano'];
+                $modelo = $_POST['modelo'] ?? " ";
+                $marca = $_POST['marca'] ?? " ";
+                $ano = $_POST['ano'] ?? " ";
 
                 $db->inserir($modelo, $marca, $ano);
                 
-                if($db){
-                    $_SESSION['msg'] = [
-                        'texto' => 'Carro Criado com sucesso!!',
-                    ];
-                }else{
-                      $_SESSION['msg'] = [
-                        'texto' => 'Não foi possivel fabricar o Carro!!',
-                    ];
-                }
 
                 header("Location: ..\index.php");
                 exit;

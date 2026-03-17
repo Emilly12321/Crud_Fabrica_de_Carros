@@ -36,13 +36,13 @@
 
                     <div class="bloco-veiculo">
                         <label>Marca :</label>
-                        <input type="text" name="marca" id = "marca" required>
+                        <input type="text" name="marca" id = "marca" >
 
                         <label>Modelo :</label>
-                        <input type="text" name="modelo" id = "modelo" required>
+                        <input type="text" name="modelo" id = "modelo" >
 
                         <label>Ano :</label>
-                        <input type="text" name="ano" id = "ano" required>
+                        <input type="text" name="ano" id = "ano" >
 
                     </div>
 

@@ -23,7 +23,7 @@ class Conexao{
         {
             // PDO, permite definir uma interface segura de conexao ao banco de dados com PHP
             $this->conexao = new PDO('mysql:host='.HOST.'; dbname='.DBNAME , USER , PASSWORD);
-
+            
         }
         
         catch(PDOException $e)
@@ -37,6 +37,5 @@ class Conexao{
 
 }
 
-$teste = new Conexao();
 
 ?>

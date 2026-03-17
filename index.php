@@ -49,12 +49,11 @@ session_start();
 
             <?php if (isset($_SESSION['msg'])): ?>
                
-                <div class="alert alert-info  alert-dismissible fade show d-flex " role="alert">
+                <div class="alert alert-info  alert-dismissible fade show d-flex  " role="alert">
                     
-                    <?= "<p>". $_SESSION['msg']['texto']. "</p>" ?>
+                    <?= "<p>". $_SESSION['msg']['texto']."</p>" ?>
 
-                    <button type="button" class="close p-1" data-bs-dismiss="alert" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn btn-close " data-bs-dismiss="alert">
                     </button>
 
                 </div>
