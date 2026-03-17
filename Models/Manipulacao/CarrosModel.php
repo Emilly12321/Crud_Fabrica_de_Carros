@@ -34,8 +34,8 @@ class CarrosModel extends Conexao
         // aqui ele manda a execução ao banco e aguarda o uso para ser executado
         $bancoSelecionando = $this->conexao->query("SELECT * FROM $this->tabela");
 
-        // transformando o objeto em uma array associativa.
-        $resultadoQuery = $bancoSelecionando->fetchAll();
+        // transformando o objeto em uma array associativa (array de arrays). Trazendo todos os registros da consulta
+        $resultadoQuery = $bancoSelecionando->fetchAll(PDO::FETCH_ASSOC);;
 
         return $resultadoQuery;
     }
@@ -46,8 +46,8 @@ class CarrosModel extends Conexao
 
         $resultado->execute([$id]);
 
-        return $resultado->fetchAll();
-
+        ///Retorna apenas um unico array associativo
+        return $resultado->fetch(PDO::FETCH_ASSOC);;
     }
 
     public function update(Carro $carro)

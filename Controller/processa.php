@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabrica de Veiculos</title>
-</head>
-
-<body>
-
-
 
 <?php
 
@@ -19,7 +7,6 @@
 
     $db = new carrosController();
 
-    // $id   = $_GET['id'] ?? $_POST['id'] ?? null;
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         
@@ -28,13 +15,6 @@
 
         switch($acao){
 
-            case 'fabricar':
-                
-                header("Location: ../View/cadastro_carro.php");
-
-                break;
-
-
             case "salvarCarro":
 
                 $modelo = $_POST['modelo'];
@@ -42,28 +22,9 @@
                 $ano = $_POST['ano'];
 
                 $db->inserir($modelo, $marca, $ano);
-
-            
-                 echo '
-                        <div class="container-pai">
-                            <div class="container-esquerdo">
-                                <div class="fotos-integrantes">
-                                    <img src="../assets/img/emilly.png" class="fotos-inte">
-                                    <img src="../assets/img/nivea.jpg" class="fotos-inte">
-                                </div>
-                                <div class="titulos">
-                                    <h2 class="subtitulo-principal">monte o seu veículo</h2>
-                                    <h1 class="texto-h1">Fábrica de Veículos</h1>
-                                </div>
-                                <div class="caixa-card">
-                                    <h3 class="sucesso">Sucesso na Fabricação</h3>
-                                    <div class="caixa-btn">
-                                        <a href="../View/index.html" class="btn-segundo">Voltar ao menu</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-direito"></div>
-                    </div>';
+                
+                header("Location: ..\View\index.html");
+                exit;
 
             break;
 
@@ -76,34 +37,16 @@
                 $ano = $_POST['ano'];
 
                 $db->atualizar($id,$modelo, $marca, $ano);
-
-                echo '
-                        <div class="container-pai">
-                            <div class="container-esquerdo">
-                                <div class="fotos-integrantes">
-                                    <img src="../assets/img/emilly.png" class="fotos-inte">
-                                    <img src="../assets/img/nivea.jpg" class="fotos-inte">
-                                </div>
-                                <div class="titulos">
-                                    <h2 class="subtitulo-principal">Atualize seu veiculo</h2>
-                                    <h1 class="texto-h1">Status de atualização</h1>
-                                </div>
-                                <div class="caixa-card">
-                                    <h3 class="sucesso">Sucesso na Edição</h3>
-                                    <div class="caixa-btn">
-                                        <a href="../View/index.html" class="btn-segundo">Voltar ao menu</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-direito"></div>
-                    </div>';
+                
+                header("Location: processa.php?acao=listar");
+                exit;
 
             break;
 
 
         }
     }
-    elseif ($_SERVER['REQUEST_METHOD'] === "GET") {
+    else if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
             $acao = $_GET['acao'] ?? "";
 
@@ -111,7 +54,9 @@
 
                 case "listar":
 
-                    $db->mostrandoTudo();
+                    $resultadoData = $db->mostrandoTudo();
+                    include_once('../View/listar_carro.php');
+                    exit;
 
                 break;
 
@@ -120,6 +65,8 @@
                     $id = $_GET['id'];
 
                     $resultadoData = $db->pegandoId($id);
+                    include_once('../View/editarCarro.php');
+                    exit;
 
 
                 break;
@@ -131,7 +78,6 @@
                     $db->excluir($id);
 
                     header("Location: processa.php?acao=listar");
-                    
                     exit;
 
                 break;
@@ -139,7 +85,3 @@
         }
     }
 ?>
-
-</body>
-
-</html>

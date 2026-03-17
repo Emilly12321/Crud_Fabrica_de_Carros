@@ -19,7 +19,8 @@ class carrosController{
     {
         $carro = new Carro($modelo, $marca, $ano);
 
-        $this->modelo->insert($carro);
+        return $this->modelo->insert($carro);
+
 
         
     }
@@ -28,14 +29,14 @@ class carrosController{
     {
 
         $resultadoData = $this->modelo->getAll();
-        include_once('../View/listar_carro.php');
-
+        return $resultadoData;
     }
 
      function pegandoId($id)
     {
-        $resultadoData = $this->modelo->getByID($id);
-        include_once('../View/editarCarro.php');
+
+        return  $this->modelo->getByID($id);
+
     }
 
     function atualizar($id, $novoModelo, $novaMarca, $novoAno)
@@ -45,10 +46,12 @@ class carrosController{
             $carroAtualizado = new Carro($novoModelo, $novaMarca, $novoAno,$id);
             
             return $this->modelo->update($carroAtualizado);
-        
+
+                    
     }
 
     function excluir($id){
+
         return $this->modelo->delete($id);
     }
 
