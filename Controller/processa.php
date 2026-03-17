@@ -1,5 +1,6 @@
 
 <?php
+    session_start();
 
     require_once '../Models/Entidade/Carro.php';
     require_once '../Models/Manipulacao/CarrosModel.php';
@@ -23,7 +24,17 @@
 
                 $db->inserir($modelo, $marca, $ano);
                 
-                header("Location: ..\View\index.html");
+                if($db){
+                    $_SESSION['msg'] = [
+                        'texto' => 'Carro Criado com sucesso!!',
+                    ];
+                }else{
+                      $_SESSION['msg'] = [
+                        'texto' => 'Não foi possivel fabricar o Carro!!',
+                    ];
+                }
+
+                header("Location: ..\index.php");
                 exit;
 
             break;

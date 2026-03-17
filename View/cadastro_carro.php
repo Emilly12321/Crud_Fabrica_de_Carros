@@ -48,7 +48,7 @@
 
                 <div class="caixa-btn">
                     <button type="submit" class="btn-primeiro">Confirmar</button>
-                    <a href="../View/index.html" class="btn-segundo">Voltar ao menu</a>
+                    <a href="..\index.php" class="btn-segundo">Voltar ao menu</a>
                 </div>
 
             </form>

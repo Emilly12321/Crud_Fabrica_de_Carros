@@ -79,7 +79,7 @@
                             </table>
                     </div>
                     <div class="caixa-btn">
-                    <a href="../View/index.html" class="btn-segundo">Voltar ao Menu</a>
+                    <a href="..\index.php" class="btn-segundo">Voltar ao Menu</a>
                     </div>
                 
              </div>

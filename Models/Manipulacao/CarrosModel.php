@@ -20,12 +20,21 @@ class CarrosModel extends Conexao
         $sql = "INSERT INTO $this->tabela (modelo, marca, ano) VALUES (?, ?, ?)";
 
         $inserindo = $this->conexao->prepare($sql);
+        
+        try{
 
-        return $inserindo->execute([
-            $carro->getModelo(),
-            $carro->getMarca(),
-            $carro->getAno()
-        ]);
+            return $inserindo->execute([
+                $carro->getModelo(),
+                $carro->getMarca(),
+                $carro->getAno()
+            ]);
+
+        }catch(PDOException $e){
+            
+            return false;
+        
+        
+        }
     }
 
     public function getAll()
