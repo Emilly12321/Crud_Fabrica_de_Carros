@@ -20,9 +20,19 @@ class CarrosModel extends Conexao
             // mesma coisa se fosse -> $bancoSelecionado = $this->conexao->prepare("INSERT INTO $this->tabela (modelo, marca, ano) VALUES (?, ?, ?)")
             $sql = "INSERT INTO $this->tabela (modelo, marca, ano) VALUES (?, ?, ?)";
             
-            $inserindo = $this->conexao->prepare($sql);
-            
-            return $inserindo->execute([ $carro->getModelo(), $carro->getMarca(), $carro->getAno()]);
+            try{
+
+                $inserindo = $this->conexao->prepare($sql);
+                
+                $inserindo->execute([ $carro->getModelo(), $carro->getMarca(), $carro->getAno()]);
+                
+                return true;
+
+            }catch(PDOException $e){
+
+                return false;
+
+            }
            
       
     }

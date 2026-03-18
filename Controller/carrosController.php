@@ -21,7 +21,7 @@ class carrosController{
 
         $carro = new Carro($modelo, $marca, $ano);
 
-        $this->modelo->insert($carro);   
+        return $this->modelo->insert($carro);   
                    
             
     }

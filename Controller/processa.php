@@ -17,11 +17,27 @@
 
             case "salvarCarro":
 
-                $modelo = $_POST['modelo'] ?? " ";
-                $marca = $_POST['marca'] ?? " ";
-                $ano = $_POST['ano'] ?? " ";
+                $resultado = false;
 
-                $db->inserir($modelo, $marca, $ano);
+                $modelo = $_POST['modelo'] ?? null;
+                $marca = $_POST['marca'] ?? null;
+                $ano = $_POST['ano'] ?? null;
+
+                if($modelo != null || $marca != null || $ano != null){
+
+                    $db->inserir($modelo, $marca, $ano);
+                    $resultado = true;
+
+                }
+
+                    
+                if($resultado == true){ 
+
+                    $_SESSION['msg'] = ['texto' => 'Carro Criado com sucesso!!'];
+
+                }else{
+                    $_SESSION['msg'] = ['texto' => 'Não foi possivel fabricar o Carro!!'];
+                }
                 
 
                 header("Location: ..\index.php");

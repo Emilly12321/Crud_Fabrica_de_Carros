@@ -19,9 +19,14 @@ class Carro{
 
     public function getModelo(){
 
+        if($this->modelo != null){
 
-        return $this->modelo;
             
+            return $this->modelo;
+            
+        }else{
+            return null;
+        }
         
     }
 
